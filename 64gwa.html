@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>我的第一個HTML程式</title>
+</head>
+<body>
+
+<h1>預知三日事，富貴五千年</h1>
+
+<p>請訂閱並點讚 <a href="https://www.youtube.com/@jotenmaster" target="_blank">炫龍館長的 YouTube 頻道</a>.</p>
+
+</body>
+</html>
+<style>
+    body {
+        background: linear-gradient(to bottom, #e6f2ff, #cce6ff); /* 從上到下漸變 */
+        /* 或其他漸變方向，例如：to right, to bottom right 等 */
+    }
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>炫龍開運命理館</title>
+    <style>
+        /* ... (保留原有樣式) ... */
+
+        body {
+            font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif; /* 使用更現代的字體 */
+            background-color: #f0f0f0; /* 調整背景顏色 */
+        }
+
+        .container {
+            max-width: 80%; /* 改為響應式寬度 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 更明顯的陰影 */
+        }
+
+        h1 {
+            font-size: 2em;
+        }
+
+        .coin {
+            background: radial-gradient(circle, #ffd700, #daa520); /* 使用漸層金色 */
+            font-size: 3em; /* 加大字體 */
+        }
+
+        .coin:hover {
+            transform: scale(1.2) rotate(360deg); /* 新增旋轉動畫 */
+        }
+
+        .generate-btn {
+            background-color: #4CAF50; /* 調整按鈕顏色 */
+            font-size: 1.2em;
+            padding: 15px 30px;
+        }
+
+        .generate-btn:hover {
+            background-color: #45a049; /* 按鈕懸浮顏色 */
+        }
+
+        .result-box {
+            font-size: 1.2em; /* 加大結果文字 */
+        }
+    </style>
+</head>
+<body>
+    <!-- ... (其餘程式碼不變) ... -->
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>六十四卦抽簽</title>
+    <style>
+        body {
+            font-family: "Microsoft JhengHei", Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .coins {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .coin {
+            width: 80px;
+            height: 80px;
+            background-color: gold;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .coin:hover {
+            transform: scale(1.1);
+        }
+
+        .result {
+            margin-top: 30px;
+            font-size: 20px;
+        }
+
+        .generate-btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .generate-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .result-box {
+            margin-top: 20px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>炫龍開運命理館</h1>
+        <p>點擊開始，三秒後隨機生成一個卦爻。</p>
+
+        <!-- 三枚五帝錢 -->
+        <div class="coins">
+            <div class="coin">福</div>
+            <div class="coin">祿</div>
+            <div class="coin">壽</div>
+        </div>
+
+        <!-- 啟動按鈕 -->
+        <button class="generate-btn" id="startButton">開始卜卦</button>
+
+        <!-- 抽簽結果 -->
+        <div class="result-box hidden" id="resultBox">
+            <p class="result" id="resultText">卦爻結果出現中...</p>
+        </div>
+    </div>
+
+    <script>
+        const guaData = [
+            { name: "乾", symbol: "☰☰", meaning: "天行健，君子以自強不息" },
+    { name: "坤", symbol: "☷☷", meaning: "地勢坤，君子以厚德載物" },
+    { name: "屯", symbol: "☳☵", meaning: "雲雷屯，君子以經綸" },
+    { name: "蒙", symbol: "☵☶", meaning: "山下有泉，蒙以養正，聖人以此教育" },
+    { name: "需", symbol: "☰☵", meaning: "天降水，君子以飲食宴樂，以務安心" },
+    { name: "訟", symbol: "☵☰", meaning: "天與水違，君子以作事謀始" },
+    { name: "師", symbol: "☷☵", meaning: "地中有水，君子以容民畜眾" },
+    { name: "比", symbol: "☷☷", meaning: "比之以誠，君子以進取結合" },
+    { name: "小畜", symbol: "☰☴", meaning: "風行天上，君子以懿文德" },
+    { name: "履", symbol: "☰☱", meaning: "履虎尾，不咥人，君子以辨上下" },
+    { name: "泰", symbol: "☷☰", meaning: "天地交泰，君子以通其德" },
+    { name: "否", symbol: "☰☷", meaning: "天地不交，君子以戒慎小事" },
+    { name: "同人", symbol: "☰☲", meaning: "火在天上，君子以行類集群" },
+    { name: "大有", symbol: "☰☷", meaning: "火在天上，君子以文明德行" },
+    { name: "謙", symbol: "☷☶", meaning: "山中有水，謙以自守，君子以辭讓" },
+    { name: "豫", symbol: "☷☱", meaning: "雷出於地，群眾和樂，君子以公告慎行" },
+    { name: "隨", symbol: "☱☷", meaning: "澤中有雷，君子以時行選擇" },
+    { name: "蠱", symbol: "☷☴", meaning: "風行山上，先破後立，君子以果斷攘除" },
+    { name: "臨", symbol: "☷☱", meaning: "澤上有地，君子以教養育人" },
+    { name: "觀", symbol: "☴☷", meaning: "風行地上，君子以觀民風俗，以宣德教化" },
+    { name: "噬嗑", symbol: "☲☷", meaning: "火雷噬嗑，剛柔相繼，取正以通物" },
+    { name: "賁", symbol: "☱☲", meaning: "地下有火，文明以飾，君子以藻德修行" },
+    { name: "剝", symbol: "☷☶", meaning: "山附於地，道漸剝落，君子以守險自省" },
+    { name: "復", symbol: "☶☷", meaning: "雷起於地，周而復始，君子以反覆自省" },
+    { name: "無妄", symbol: "☰☳", meaning: "天雷無妄，正道坦誠，君子以克己立行" },
+    { name: "大畜", symbol: "☶☰", meaning: "山上有天，大畜剛柔，君子以不怠進德修行" },
+    { name: "頤", symbol: "☶☷", meaning: "山中有水，慎言聖食，君子以養口德" },
+    { name: "大過", symbol: "☴☷", meaning: "澤上行風，大過勢危，君子當慎防災難" },
+    { name: "坎", symbol: "☵☵", meaning: "水流坎坷，勇進克難，君子以正道固志" },
+    { name: "離", symbol: "☲☲", meaning: "光明正大，火炎而上，君子以明智行事" },
+    { name: "咸", symbol: "☱☶", meaning: "山上有澤，感應萬物，君子以慎告誠信" },
+    { name: "恆", symbol: "☴☵", meaning: "風行山下，守正不移，君子以安寧久長" },
+    { name: "遯", symbol: "☶☰", meaning: "山上有天，道險宜退，君子退避自守" },
+    { name: "大壯", symbol: "☵☰", meaning: "雷震於天，道勢壯盛，君子以剛健行德" },
+    { name: "晉", symbol: "☲☷", meaning: "火升於地，君子進德，燦然顯現" },
+    { name: "明夷", symbol: "☷☲", meaning: "光明隱伏，臨危不亂，君子以隱晦自持" },
+    { name: "家人", symbol: "☲☶", meaning: "風火相應，家中有治，君子以修己起家" },
+    { name: "睽", symbol: "☱☲", meaning: "火澤相離，君子當審時度勢" },
+    { name: "損", symbol: "☰☲", meaning: "山下有澤，損之益孰，君子用謙克守正" },
+    { name: "益", symbol: "☴☷", meaning: "風下於地，施德惠物，君子以積福報德" },
+    { name: "夬", symbol: "☰☴", meaning: "天道威震，下令剛決，君子應果斷行正" },
+    { name: "姤", symbol: "☰☴", meaning: "天道相聚，陰陽相會，君子以審慎觀變" },
+    { name: "萃", symbol: "☱☷", meaning: "澤於地上，群聚而生，君子以和聚萬物" },
+    { name: "升", symbol: "☴☷", meaning: "地上有風，君子以積極進取，志在高遠" },
+    { name: "困", symbol: "☷☵", meaning: "澤無水源，施諸勞動，君子以勤勉克困" },
+    { name: "井", symbol: "☶☶", meaning: "木有井水，君子當取安以居" },
+    { name: "革", symbol: "☲☱", meaning: "澤火更替，君子當改革創造" },
+    { name: "鼎", symbol: "☲☱", meaning: "水火相生，君子致力文明發展" },
+    { name: "震", symbol: "☳☳", meaning: "雷興威震，君子當奮發勵志" },
+    { name: "艮", symbol: "☶☶", meaning: "止而不動，君子當堅守固執" },
+    { name: "漸", symbol: "☴☷", meaning: "風行山下，循序漸進，君子以堅韌持久" },
+    { name: "歸妹", symbol: "☲☴", meaning: "性色合宜，歸於正道，君子當以婚姻正德" },
+    { name: "豐", symbol: "☲☳", meaning: "雷火相興，德行光大，君子以盛德處中" },
+    { name: "旅", symbol: "☷☲", meaning: "火於山上，處異鄉時須謹慎行事" },
+    { name: "巽", symbol: "☴☴", meaning: "風行其道，君子以謙順而行" },
+    { name: "兌", symbol: "☱☱", meaning: "澤到柔順，君子以喜悅施德" },
+    { name: "渙", symbol: "☱☵", meaning: "風散於前，君子當散德於百姓" },
+    { name: "節", symbol: "☵☱", meaning: "水澤相交，君子應以節制自律" },
+    { name: "中孚", symbol: "☴☱", meaning: "風在澤上，信德通達" },
+    { name: "小過", symbol: "☶☴", meaning: "雷風相交，君子當小心謹慎" },
+    { name: "既濟", symbol: "☵☲", meaning: "水火成功既濟，君子當守正不懈" },
+    { name: "未濟", symbol: "☲☵", meaning: "火在水上尚未完成，君子當積極求善" }
+        ];
+
+        const startButton = document.getElementById("startButton");
+        const resultBox = document.getElementById("resultBox");
+        const resultText = document.getElementById("resultText");
+
+        startButton.addEventListener("click", () => {
+            resultBox.classList.remove("hidden");
+            resultText.textContent = "抽簽中，請稍候...";
+            setTimeout(() => {
+                const randomIndex = Math.floor(Math.random() * guaData.length);
+                const selectedGua = guaData[randomIndex];
+                resultText.innerHTML = `
+                    恭喜！抽到了卦爻：<br>
+                    <strong>${selectedGua.name}卦</strong>（${selectedGua.symbol}）<br>
+                    <em>${selectedGua.meaning}</em>
+                `;
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
