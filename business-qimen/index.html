@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>商戰奇門 Business QiMen</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">Q</div>
+        <div>
+          <h1>商戰奇門</h1>
+          <p>Business QiMen · 全球事件 + 市場數據 + 奇門盤象 + 收盤驗證</p>
+        </div>
+      </div>
+      <div class="top-actions">
+        <div class="status-pill" id="clock">--</div>
+        <button class="ghost-btn" id="openEngine" type="button">開啟排盤引擎</button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <aside class="rail">
+        <section class="panel">
+          <div class="panel-title">
+            <span>01</span>
+            <h2>全球事件情報</h2>
+          </div>
+          <textarea id="eventInput" rows="6" placeholder="輸入今日最重要事件，例如：Fed 利率訊號、地緣風險、AI 產業新聞、能源異動..."></textarea>
+          <div class="quick-row" id="eventChips"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-title">
+            <span>02</span>
+            <h2>市場數據中心</h2>
+          </div>
+          <div class="metric-grid">
+            <label>全球股市<select id="equityTone"><option value="1">偏強</option><option value="0" selected>震盪</option><option value="-1">偏弱</option></select></label>
+            <label>美元指數<select id="dollarTone"><option value="1">走強</option><option value="0" selected>持平</option><option value="-1">走弱</option></select></label>
+            <label>黃金<select id="goldTone"><option value="1">走強</option><option value="0" selected>持平</option><option value="-1">走弱</option></select></label>
+            <label>科技股<select id="techTone"><option value="1">偏強</option><option value="0" selected>觀望</option><option value="-1">偏弱</option></select></label>
+            <label>能源<select id="energyTone"><option value="1">壓力升</option><option value="0" selected>中性</option><option value="-1">壓力降</option></select></label>
+            <label>波動率<select id="volTone"><option value="1">升高</option><option value="0" selected>一般</option><option value="-1">降低</option></select></label>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-title">
+            <span>03</span>
+            <h2>奇門用神設定</h2>
+          </div>
+          <div class="mode-list">
+            <label><input type="radio" name="theme" value="equity" checked /> 股市 / 指數</label>
+            <label><input type="radio" name="theme" value="fx" /> 匯率 / 美元</label>
+            <label><input type="radio" name="theme" value="gold" /> 黃金 / 避險</label>
+            <label><input type="radio" name="theme" value="tech" /> 科技 / AI 題材</label>
+            <label><input type="radio" name="theme" value="energy" /> 能源 / 商品</label>
+          </div>
+          <button class="primary-btn" id="generateBrief" type="button">生成今日作戰判斷</button>
+        </section>
+      </aside>
+
+      <section class="engine-panel">
+        <div class="engine-head">
+          <div>
+            <h2>炫龍奇門排盤引擎</h2>
+            <p>嵌入既有奇門遁甲程式，作為商戰奇門盤象來源。</p>
+          </div>
+          <div class="engine-url">xuanlong-azajyanf.manus.space</div>
+        </div>
+        <iframe id="qimenFrame" src="https://xuanlong-azajyanf.manus.space/" title="炫龍奇門遁甲排盤引擎" allow="clipboard-write"></iframe>
+      </section>
+
+      <aside class="rail">
+        <section class="panel highlight">
+          <div class="panel-title">
+            <span>04</span>
+            <h2>商戰奇門指數</h2>
+          </div>
+          <div id="scoreList" class="score-list"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-title">
+            <span>05</span>
+            <h2>今日作戰建議</h2>
+          </div>
+          <div class="brief" id="briefOutput">
+            <p>輸入事件與市場狀態後，按下「生成今日作戰判斷」。</p>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-title">
+            <span>06</span>
+            <h2>收盤驗證</h2>
+          </div>
+          <div class="verify-grid">
+            <label>實際方向<select id="actualDirection"><option value="up">上漲/風險偏好</option><option value="flat">震盪</option><option value="down">下跌/避險</option></select></label>
+            <label>命中程度<select id="hitLevel"><option value="2">高</option><option value="1">中</option><option value="0">低</option></select></label>
+          </div>
+          <textarea id="reviewNote" rows="4" placeholder="輸入收盤後觀察：哪個盤象有效、哪個市場訊號失準..."></textarea>
+          <button class="secondary-btn" id="saveReview" type="button">儲存驗證紀錄</button>
+          <div id="reviewHistory" class="history"></div>
+        </section>
+      </aside>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
