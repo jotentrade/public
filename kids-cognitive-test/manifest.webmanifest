@@ -1,0 +1,20 @@
+{
+  "name": "小小腦力探險",
+  "short_name": "腦力探險",
+  "description": "2–6 歲幼兒圖形認知遊戲式篩查工具",
+  "lang": "zh-Hant",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#fff7e8",
+  "theme_color": "#ff8a65",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
