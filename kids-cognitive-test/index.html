@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+<title>小小腦力探險</title>
+<meta name="theme-color" content="#ff8a65">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="小小腦力探險">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon.svg">
+<style>
+:root{--bg:#fff7e8;--card:#ffffff;--ink:#263238;--accent:#ff8a65;--accent2:#64b5f6;--good:#66bb6a;--muted:#78909c}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans TC",sans-serif;background:linear-gradient(#fff7e8,#eaf7ff);color:var(--ink);min-height:100vh}
+.app{width:min(100%,820px);margin:auto;padding:clamp(12px,3vw,18px);padding-left:max(clamp(12px,3vw,18px),env(safe-area-inset-left));padding-right:max(clamp(12px,3vw,18px),env(safe-area-inset-right));padding-bottom:max(18px,env(safe-area-inset-bottom))}.top{display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{font-weight:900;font-size:clamp(24px,5vw,40px)}.pill{background:#fff;border-radius:999px;padding:8px 14px;box-shadow:0 4px 15px #0001}
+.card{background:var(--card);border-radius:28px;padding:24px;box-shadow:0 16px 40px #455a6420;margin-top:18px}.hero{text-align:center;padding:30px 18px}.hero .emoji{font-size:72px}.hero h1{font-size:clamp(30px,7vw,56px);margin:8px}.hero p{font-size:18px;color:var(--muted);line-height:1.7}
+button{font:inherit;border:0;border-radius:20px;padding:16px 22px;cursor:pointer;min-height:58px}.primary{background:var(--accent);color:#fff;font-weight:900;font-size:20px;box-shadow:0 8px 0 #e56d4b}.secondary{background:#eef6ff;color:#345}.row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}.progress{height:14px;background:#edf2f4;border-radius:999px;overflow:hidden;margin:16px 0}.bar{height:100%;background:var(--accent2);width:0;transition:.3s}
+.prompt{text-align:center;font-size:clamp(24px,5vw,36px);font-weight:900;margin:8px 0 20px}.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.choice{background:#fff;border:4px solid #e8eef2;border-radius:24px;min-height:160px;display:flex;align-items:center;justify-content:center;transition:.12s}.choice:active{transform:scale(.98)}.choice svg{width:110px;height:110px}.choice .big{font-size:88px}
+.feedback{text-align:center;font-size:24px;font-weight:900;min-height:36px;margin-top:12px}.hidden{display:none!important}.result-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.metric{background:#f7fafc;border-radius:20px;padding:16px}.metric b{font-size:28px}.note{font-size:14px;line-height:1.6;color:#607d8b}.footer{text-align:center;color:#78909c;font-size:13px;padding:22px}
+@media(max-width:560px){
+  .top{align-items:flex-start}.pill{font-size:13px}
+  .choices{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .choice{min-height:118px;padding:10px}.choice svg{width:82px;height:82px}
+  .choice .big{font-size:64px}.card{padding:14px;border-radius:22px}
+  .hero{padding:22px 10px}.hero .emoji{font-size:58px}
+  button{min-height:54px;padding:13px 16px}
+}
+@media(max-width:380px){
+  .brand{font-size:22px}.choice{min-height:104px}.choice svg{width:72px;height:72px}
+  .prompt{font-size:23px}.result-grid{grid-template-columns:1fr}
+}
+@media(min-width:900px){
+  .app{max-width:1100px}.choices{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .choice{min-height:170px}
+}
+@media(orientation:landscape) and (max-height:560px){
+  .hero .emoji{font-size:44px}.card{margin-top:10px}.prompt{margin-bottom:10px}
+  .choice{min-height:96px}.choice svg{width:70px;height:70px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="top"><div class="brand">🧠 小小腦力探險</div><div class="pill" id="agePill">3–5 歲</div></div>
+  <section id="start" class="card hero">
+    <div class="emoji">🦊🌈⭐</div><h1>找一找、點一點！</h1>
+    <p>8 個超簡單圖形遊戲，觀察孩子的圖形辨識、規律、記憶與分類表現。<br>建議由大人陪同，但不要提示答案。</p>
+    <div class="row">
+      <button class="primary" onclick="begin()">開始遊戲</button>
+      <button class="secondary" onclick="speak('準備好了嗎？找一找，點一點！')">🔊 聽說明</button>
+      <button class="secondary hidden" id="installBtn">📲 安裝到裝置</button>
+    </div>
+    <p class="note">此工具是教育／篩查用途，不是臨床 IQ 診斷。若要正式評估，應由兒童心理或發展專業人員使用標準化量表。</p>
+  </section>
+
+  <section id="game" class="card hidden">
+    <div class="progress"><div class="bar" id="bar"></div></div>
+    <div class="prompt" id="prompt"></div>
+    <div class="choices" id="choices"></div>
+    <div class="feedback" id="feedback"></div>
+    <div class="row"><button class="secondary" onclick="speak(document.getElementById('prompt').innerText)">🔊 再聽一次</button></div>
+  </section>
+
+  <section id="result" class="card hidden">
+    <div class="hero"><div class="emoji">🏆🧸</div><h1>完成了！</h1><p>以下是這次遊戲的表現摘要。</p></div>
+    <div class="result-grid" id="metrics"></div>
+    <div class="card" style="box-shadow:none;background:#fff9e6"><b>給家長的解讀</b><p id="interpretation"></p><p class="note">請把結果當作一次遊戲觀察，不要單獨用它判定孩子的「智商高低」。幼兒表現會受睡眠、語言理解、情緒、熟悉度與操作能力影響。</p></div>
+    <div class="row"><button class="primary" onclick="location.reload()">再玩一次</button></div>
+  </section>
+  <div class="footer">Prototype v1 · 純瀏覽器執行 · 不上傳兒童資料</div>
+</div>
+<script>
+const svg={
+ circle:(c='#64b5f6')=>`<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="34" fill="${c}"/></svg>`,
+ square:(c='#ffb74d')=>`<svg viewBox="0 0 100 100"><rect x="18" y="18" width="64" height="64" rx="8" fill="${c}"/></svg>`,
+ triangle:(c='#81c784')=>`<svg viewBox="0 0 100 100"><polygon points="50,12 88,82 12,82" fill="${c}"/></svg>`,
+ star:(c='#ffd54f')=>`<svg viewBox="0 0 100 100"><polygon points="50,8 61,37 92,38 67,57 76,88 50,70 24,88 33,57 8,38 39,37" fill="${c}"/></svg>`
+};
+const qs=[
+ {d:'辨識',p:'哪一個是圓形？',a:0,c:[svg.circle(),svg.square(),svg.triangle(),svg.star()]},
+ {d:'分類',p:'哪一個跟其他的不一樣？',a:3,c:[svg.circle('#64b5f6'),svg.circle('#ff8a65'),svg.circle('#81c784'),svg.square('#64b5f6')]},
+ {d:'規律',p:'藍、黃、藍、黃，下一個是？',a:0,c:[svg.circle('#64b5f6'),svg.circle('#ffd54f'),svg.square('#64b5f6'),svg.triangle('#ffd54f')]},
+ {d:'大小',p:'哪一個最大？',a:2,c:[`<div class="big" style="font-size:46px">●</div>`,`<div class="big" style="font-size:64px">●</div>`,`<div class="big" style="font-size:96px">●</div>`,`<div class="big" style="font-size:34px">●</div>`]},
+ {d:'配對',p:'找出一樣的星星。',a:1,c:[svg.triangle(),svg.star(),svg.square(),svg.circle()]},
+ {d:'方向',p:'哪一個箭頭往上？',a:2,c:['<div class="big">➡️</div>','<div class="big">⬇️</div>','<div class="big">⬆️</div>','<div class="big">⬅️</div>']},
+ {d:'數量',p:'哪一格有 3 個圓？',a:1,c:['<div class="big">●●</div>','<div class="big" style="font-size:52px">●●●</div>','<div class="big" style="font-size:44px">●●●●</div>','<div class="big">●</div>']},
+ {d:'規律',p:'圓、方、圓、方，下一個是？',a:0,c:[svg.circle(),svg.square(),svg.triangle(),svg.star()]}
+];
+let i=0,score=0,byDomain={},locked=false,t0=0,totalMs=0;
+function begin(){document.getElementById('start').classList.add('hidden');document.getElementById('game').classList.remove('hidden');render();}
+function render(){locked=false;t0=Date.now();const q=qs[i];document.getElementById('bar').style.width=((i)/qs.length*100)+'%';document.getElementById('prompt').innerText=q.p;document.getElementById('feedback').innerText='';const box=document.getElementById('choices');box.innerHTML='';q.c.forEach((x,n)=>{const b=document.createElement('button');b.className='choice';b.innerHTML=x;b.setAttribute('aria-label','選項 '+(n+1));b.onclick=()=>answer(n,b);box.appendChild(b)});}
+function answer(n,b){if(locked)return;locked=true;const q=qs[i];const ok=n===q.a;totalMs+=Date.now()-t0;byDomain[q.d]=byDomain[q.d]||{right:0,total:0};byDomain[q.d].total++;if(ok){score++;byDomain[q.d].right++;document.getElementById('feedback').innerText='答對了！⭐';b.style.borderColor='#66bb6a'}else{document.getElementById('feedback').innerText='很好，我們看下一題 🌈';b.style.borderColor='#ffcc80'}setTimeout(()=>{i++;i<qs.length?render():finish()},700)}
+function finish(){document.getElementById('bar').style.width='100%';document.getElementById('game').classList.add('hidden');document.getElementById('result').classList.remove('hidden');let html=`<div class="metric"><div>整體答對</div><b>${score}/${qs.length}</b></div><div class="metric"><div>平均反應</div><b>${(totalMs/qs.length/1000).toFixed(1)} 秒</b></div>`;Object.entries(byDomain).forEach(([k,v])=>html+=`<div class="metric"><div>${k}</div><b>${v.right}/${v.total}</b></div>`);document.getElementById('metrics').innerHTML=html;let text=score>=7?'這次在簡單圖形辨識與規律任務中表現穩定。可以逐步增加記憶與規則變化。':score>=4?'目前能完成部分圖形任務。建議以遊戲方式重複練習，並觀察不同日子的穩定度。':'這次可能受到疲累、陌生、語言理解或操作方式影響。建議改天在放鬆狀態再玩一次，不要依一次結果下結論。';document.getElementById('interpretation').innerText=text;}
+function speak(t){if(!('speechSynthesis' in window))return;const u=new SpeechSynthesisUtterance(t);u.lang='zh-TW';u.rate=.85;speechSynthesis.cancel();speechSynthesis.speak(u)}
+
+let deferredInstallPrompt=null;
+window.addEventListener('beforeinstallprompt',(e)=>{
+  e.preventDefault();
+  deferredInstallPrompt=e;
+  document.getElementById('installBtn')?.classList.remove('hidden');
+});
+document.getElementById('installBtn')?.addEventListener('click',async()=>{
+  if(!deferredInstallPrompt)return;
+  deferredInstallPrompt.prompt();
+  await deferredInstallPrompt.userChoice;
+  deferredInstallPrompt=null;
+  document.getElementById('installBtn')?.classList.add('hidden');
+});
+window.addEventListener('appinstalled',()=>{
+  document.getElementById('installBtn')?.classList.add('hidden');
+});
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
+}
+</script>
+</body></html>
